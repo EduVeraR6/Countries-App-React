@@ -1,0 +1,57 @@
+.contenedor {
+    padding: 20px;
+    width: 400px;
+    display: flex; 
+    gap: 5px;
+    flex-direction: column;
+    border: 2px solid #ffff;
+}
+
+.contenedor:hover {
+    border-color: blanchedalmond;
+}
+
+.nombrePais {
+    text-align: center;
+}
+
+.imgBandera { 
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.buttonInfoContenedor { 
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.buttonInfo {
+    margin: 5px;
+    background-color: #f2f2;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.buttonInfo:hover{
+    background-color: #f2f2f2;
+    color: #000000;
+    transition: ease-in-out all 0.3s;
+}
+
+.buttonFavoritos{
+   width: 10px;
+   font-size: 25px;
+   cursor: pointer;
+}
+
+
+.buttonFavoritos:hover{
+    color: yellow;
+    transition: ease-in-out all 0.3s;
+}
