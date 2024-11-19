@@ -23,17 +23,13 @@ export function useFetchCountries() {
 }
 
 
-// Consulta para países por nombre
 export function useFetchCountryByName(name: string) {
   return useQuery({
     queryKey: ["countriesByName", name],
     queryFn: () => fetchCountryByName(name),
-    enabled: !!name, // Solo ejecuta la consulta si name no es vacío o null
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    retry: false, // Opcional: evita reintentos innecesarios si `name` es inválido
+    enabled: !!name, 
+    staleTime: 1000 * 60 * 5, 
+    retry: false, 
     select : (data) => data.sort((a,b) => a.name.common.localeCompare(b.name.common)),
   });
 }
-
-
-

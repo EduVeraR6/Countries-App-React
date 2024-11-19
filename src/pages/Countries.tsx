@@ -6,13 +6,12 @@ import {
 } from "../hooks/useCountries";
 import styled from "../pages/Countries.module.css";
 import { useFavoritesCountries } from "../store/useCountrySelected";
+
 export default function Countries() {
-  const {
-    register,
-    watch
-  } = useForm();
+  const { register, watch } = useForm();
 
   const { data, isLoading, isError, error } = useFetchCountries();
+
   const { favoriteCountries } = useFavoritesCountries();
 
   const response = useFetchCountryByName(watch("country"));
@@ -22,15 +21,12 @@ export default function Countries() {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>{error.message}</div>;
 
-
-  if(isError) return <div>{response.error?.message}</div>;
-
   return (
     <>
       <h1 className="titulo">Lista Paises</h1>
 
-      <section className="container col-6 ">
-        <form>
+      <section className="d-flex justify-content-center align-items-center">
+        <form className="d-flex justify-content-center align-items-center" >
           <input
             className="form-control m-5"
             {...register("country", { required: true })}
@@ -43,7 +39,9 @@ export default function Countries() {
         {(response.data?.length ?? 0 > 0 ? response.data : data ?? [])?.map(
           (country, index) => (
             <CardCountry
-              isFavorite={favoriteCountries.includes(country)}
+              isFavorite={favoriteCountries.some(
+                (c) => JSON.stringify(c) === JSON.stringify(country)
+              )}
               key={index}
               country={country}
             />

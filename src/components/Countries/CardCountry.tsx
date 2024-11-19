@@ -6,19 +6,19 @@ import { useFavoritesCountries } from "../../store/useCountrySelected";
 
 interface Props {
   country: Country;
-  isFavorite : boolean;
+  isFavorite: boolean;
 }
 
-export default function CardCountry({ country ,isFavorite}: Props) {
+export default function CardCountry({ country, isFavorite }: Props) {
   const [show, setShow] = useState(false);
-
   const [countrySelect, setCountrySelect] = useState({} as Country);
-  
- 
- 
-  const selectFavorite = useFavoritesCountries((state) => state.addFavoriteCountry)
-  const removeFavorite = useFavoritesCountries((state) => state.removeFavoriteCountry)
 
+  const selectFavorite = useFavoritesCountries(
+    (state) => state.addFavoriteCountry
+  );
+  const removeFavorite = useFavoritesCountries(
+    (state) => state.removeFavoriteCountry
+  );
 
   const handleShow = (country: Country) => {
     setCountrySelect(country);
@@ -29,18 +29,15 @@ export default function CardCountry({ country ,isFavorite}: Props) {
     setShow(false);
   };
 
-
   const handleFavorite = () => {
-  
-    console.log('handleFavorite' , isFavorite);
+    console.log("handleFavorite", isFavorite);
 
-
-    if(isFavorite){
-      removeFavorite(country)
-    }else{
-      selectFavorite(country)
+    if (isFavorite) {
+      removeFavorite(country);
+    } else {
+      selectFavorite(country);
     }
-  }
+  };
 
   return (
     <div className={styled.contenedor}>
@@ -62,7 +59,11 @@ export default function CardCountry({ country ,isFavorite}: Props) {
         </button>
       </div>
 
-      <i onClick={handleFavorite} className={isFavorite? `bi bi-star-fill` : `bi bi-star`}></i>
+      <i
+        onClick={handleFavorite}
+        style={{ cursor: "pointer", fontSize: "20px" }}
+        className={isFavorite ? `bi bi-star-fill` : `bi bi-star`}
+      ></i>
 
       <CountryInfo
         country={countrySelect}

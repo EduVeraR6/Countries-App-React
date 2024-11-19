@@ -1,9 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "./NavBar.module.css";
+import { useIsLogin } from "../store/useLogin";
 
-import React from "react";
 
 export default function NavBar() {
+
+  const {isLogin} = useIsLogin();
+  const handleIsLogin = useIsLogin((state) => state.setIsLogin);
+  const navigate = useNavigate();
+
+  const logoutButton = () => {
+
+    handleIsLogin(false);
+    localStorage.removeItem("token");
+    navigate("/");
+  }
+
+
+
   return (
     <div>
       <nav
@@ -12,9 +26,7 @@ export default function NavBar() {
         }
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
+          <Link to="/" className="navbar-brand">AppNav</Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -29,12 +41,15 @@ export default function NavBar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                  <Link  to={"/"} className="nav-link">Home</Link>
+                  <Link  to={"/countries"} className="nav-link">Home</Link>
               </li>
               <li className="nav-item">
                <Link  to={"/favoritos"} className="nav-link">Favoritos</Link>
               </li>
             </ul>
+          </div>
+          <div>
+            <button className="btn btn-danger" onClick={logoutButton}>Salir</button>
           </div>
         </div>
       </nav>

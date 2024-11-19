@@ -8,3 +8,15 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
+
+.title{
+  background: #202020;
+  color: aliceblue;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

@@ -1,4 +1,4 @@
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import styled from "../modals/CountryInfo.module.css";
 import { Country } from "../../interfaces/countries.interface";
 interface Props {
@@ -15,27 +15,30 @@ export default function CountryInfo({ show, handleClose, country }: Props) {
         show={show}
         onHide={handleClose}
       >
-        <Modal.Header className={styled.backgroundModal} closeButton>
-          <Modal.Title>{country.name?.common}</Modal.Title>
+        <Modal.Header className={styled.title}>
+          <Modal.Title>Detalles de {country.name?.common}</Modal.Title>
+          <i style={{cursor : "pointer" , color : "white" , fontSize : "30px"}}  onClick={handleClose} className="bi bi-x-lg"></i>
         </Modal.Header>
         <Modal.Body className={styled.backgroundModal}>
           <div>
-            <img src={country.flags?.png} alt={country.name?.common} />
-            <div className="mt-5">
-              <p>Nombre oficial : {country.name?.official}</p>
-              <p>Capital: {country.capital}</p>
-              <p>Moneda : {country.currencies?.name}</p>
+            <div className="d-flex justify-content-center align-items-center">
+              <img src={country.flags?.png} alt={country.name?.common} />
+            </div>
+            <div className="mt-5 ">
+              <p><strong>Nombre oficial:</strong> {country.name?.official}</p>
+              <p><strong>Capital:</strong> {country.capital}</p>
+              <p><strong>Moneda:</strong> {country.currencies?.name}</p>
+              <p><strong>Continente:</strong> {country.continents}</p>
+              <p><strong>Poblacion:</strong> {Number(country.population)}</p>
               <p>
-                Independiente:{" "}
+               <strong>Independiente:</strong>{" "}
                 {country.independent
                   ? "Es un estado independiente"
                   : "No es un estado independiente"}
               </p>
             </div>
-         
           </div>
         </Modal.Body>
-       
       </Modal>
     </>
   );
